@@ -1,0 +1,75 @@
+/* Design tokens. Swap the palette here when the real brand assets arrive. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Neutrals — warm paper rather than clinical white */
+  --paper: #f4f1ea;
+  --paper-raised: #fbf9f5;
+  --paper-sunken: #eae5da;
+  --hairline: #ded7c9;
+  --hairline-strong: #c9c0ad;
+
+  --ink: #1b1a17;
+  --ink-muted: #5f5c53;
+  --ink-faint: #8b8779;
+
+  /* Accents — one dominant, one warning-side ember */
+  --accent: #0f5c55;
+  --accent-hover: #0b463f;
+  --accent-wash: #dceae6;
+  --accent-ink: #f4f1ea;
+  --ember: #b6410f;
+  --ember-wash: #f6e2d6;
+  --positive: #2f6d3f;
+  --negative: #a3341c;
+
+  --focus: #0f5c55;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  --shadow-card: 0 1px 1px rgb(27 26 23 / 4%), 0 8px 24px -18px rgb(27 26 23 / 45%);
+  --shadow-pop: 0 24px 48px -28px rgb(27 26 23 / 55%);
+
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --font-body: 'IBM Plex Sans', ui-sans-serif, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --shell-sidebar: 246px;
+  --shell-gutter: clamp(1rem, 1rem + 1.6vw, 2.75rem);
+
+  --ease: cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16161a;
+    --paper-raised: #1e1e24;
+    --paper-sunken: #101014;
+    --hairline: #2e2e37;
+    --hairline-strong: #43434f;
+
+    --ink: #f0ede6;
+    --ink-muted: #a8a49b;
+    --ink-faint: #78756d;
+
+    --accent: #5ec4b2;
+    --accent-hover: #7bd6c5;
+    --accent-wash: #16302d;
+    --accent-ink: #0c1c1a;
+    --ember: #e2854f;
+    --ember-wash: #33221a;
+    --positive: #79c48c;
+    --negative: #e08469;
+
+    --focus: #5ec4b2;
+
+    --shadow-card: 0 1px 1px rgb(0 0 0 / 40%), 0 12px 28px -20px rgb(0 0 0 / 80%);
+    --shadow-pop: 0 28px 56px -30px rgb(0 0 0 / 90%);
+  }
+}
+
+/* No in-app theme switch yet — the OS preference is the only signal. Adding a
+   toggle later means lifting the dark block into a [data-theme] selector too. */
