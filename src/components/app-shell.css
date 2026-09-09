@@ -1,0 +1,245 @@
+.shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--shell-sidebar) minmax(0, 1fr);
+  min-height: 100%;
+}
+
+/* ---- Sidebar ---- */
+
+.shell__side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1rem 2rem;
+  border-right: 1px solid var(--hairline);
+  background: var(--paper-sunken);
+}
+
+.shell__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.shell__brand em {
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.shell__monogram {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 15px;
+}
+
+.shell__nav-group + .shell__nav-group {
+  margin-top: 1.35rem;
+}
+
+.shell__nav-heading {
+  padding: 0 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.shell__side ul {
+  list-style: none;
+  padding: 0;
+}
+
+.shell__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.42rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: background-color 120ms var(--ease), color 120ms var(--ease);
+}
+
+a.shell__link:hover {
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.shell__link--active {
+  background: var(--accent-wash);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.shell__link--soon {
+  color: var(--ink-faint);
+  cursor: default;
+}
+
+.chip {
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chip--soon {
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink-faint);
+}
+
+/* ---- Top bar ---- */
+
+.shell__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.shell__top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem var(--shell-gutter);
+  border-bottom: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.shell__title {
+  flex: 1;
+  min-width: 0;
+  font-size: 1.35rem;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1, 'opsz' 40;
+}
+
+.shell__user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shell__user-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.25;
+}
+
+.shell__user-name {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.shell__user-role {
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent-wash);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.btn--quiet {
+  border-color: var(--hairline-strong);
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 13px;
+  padding: 0.42rem 0.8rem;
+}
+
+.btn--quiet:hover {
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.icon-btn {
+  display: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.shell__main {
+  flex: 1;
+  padding: var(--shell-gutter);
+}
+
+.shell__scrim {
+  display: none;
+}
+
+/* ---- Mobile: sidebar becomes a drawer ---- */
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shell__side {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 20;
+    width: var(--shell-sidebar);
+    transform: translateX(-100%);
+    transition: transform 220ms var(--ease);
+    box-shadow: var(--shadow-pop);
+  }
+
+  .shell--nav-open .shell__side {
+    transform: translateX(0);
+  }
+
+  .shell--nav-open .shell__scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+    border: 0;
+    padding: 0;
+    background: rgb(10 10 12 / 45%);
+  }
+
+  .icon-btn {
+    display: grid;
+  }
+
+  .shell__user-meta {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .shell__title {
+    font-size: 1.15rem;
+  }
+}
