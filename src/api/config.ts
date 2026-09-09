@@ -15,7 +15,12 @@ export type RefreshStrategy =
   | 'body'
 
 export const api = {
-  baseUrl: import.meta.env.VITE_API_BASE_URL ?? '/api',
+  /**
+   * Relative to the deployed base path, so the mock service worker (whose
+   * scope is that same path) can still see the calls when the preview is
+   * hosted from a subdirectory.
+   */
+  baseUrl: import.meta.env.VITE_API_BASE_URL ?? `${import.meta.env.BASE_URL}api`,
 
   transport: (import.meta.env.VITE_API_TRANSPORT ?? 'rest') as TransportMode,
 
